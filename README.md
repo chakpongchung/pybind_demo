@@ -1,9 +1,9 @@
 # pybind11 demo
 
-### results (release build)
+### results (release build, i5-4670 @ 3.4Ghz x 4)
 ```bash
 scripts/ackermann.py		~10 mins
-scripts/ackermann_pybind.py 	~4.3 secs 
+scripts/ackermann_pybind.py 	~3 secs 
 ```
 what?!
 
