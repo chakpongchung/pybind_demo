@@ -12,6 +12,8 @@ build/
 *.lo
 *.o
 *.obj
+__pycache__
+*.pyc
 
 # Precompiled Headers
 *.gch
