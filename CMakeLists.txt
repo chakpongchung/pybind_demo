@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 project(pybind_demo)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 
 find_package(PythonLibs 3 REQUIRED)
 
@@ -12,5 +12,5 @@ set_target_properties(pybind_demo
     LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/scripts"
 )
 set_source_files_properties(src/pybind_demo.cpp 
-	PROPERTIES COMPILE_FLAGS -Wall -Wextra -Weffc++ -pedantic -Werror
+    PROPERTIES COMPILE_FLAGS -Wall -Wextra -Weffc++ -pedantic -Werror
 )
