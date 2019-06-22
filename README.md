@@ -24,6 +24,9 @@ cd pybind_demo && mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make 
 ```
+*Custom Options*
+* `LIB_GEN_PATH`: Where generated library will be placed. **Default**: `scripts/`
+
 ***Note***
 You may need to manually set the python version to build against, e.g. when encountering a `PythonLibs` and `PythonInterpreter` mismatch, in `build` directory:
 ```bash
@@ -31,7 +34,15 @@ cmake -DCMAKE_BUILD_TYPE=Release -DPYTHON_LIBRARY=$(python-config --prefix)/lib/
 make
 ```
 
+### use from python
 To run the compiled c++ lib from python code, in `scripts/`: run 
 ``` bash
 python-<version you compiled against> ackermann_pybind.py
 ```
+
+The easiest way to use the generated library from *anywhere* is to add the output path (default `scripts`) to `PYTHONPATH`
+```bash
+PYTHONPATH="${PYTHONPATH}:/path/to/this/repo/scripts"
+export PYTHONPATH
+```
+or change `LIB_GEN_PATH` to an existing path in `$PYTHONPATH`
