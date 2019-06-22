@@ -24,11 +24,14 @@ cd pybind_demo && mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make 
 ```
-#### Note
+***Note***
 You may need to manually set the python version to build against, e.g. when encountering a `PythonLibs` and `PythonInterpreter` mismatch, in `build` directory:
 ```bash
 cmake -DCMAKE_BUILD_TYPE=Release -DPYTHON_LIBRARY=$(python-config --prefix)/lib/libpython<version>.dylib -DPYTHON_INCLUDE_DIR=$(python-config --prefix)/include/python<version> ..
 make
 ```
 
-To run the compiled c++ lib from python code, in `scripts/`: run `python-<version you compiled against> ackermann_pybind.py`
+To run the compiled c++ lib from python code, in `scripts/`: run 
+``` bash
+python-<version you compiled against> ackermann_pybind.py
+```
