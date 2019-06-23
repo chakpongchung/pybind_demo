@@ -21,16 +21,18 @@ Dependencies:
 ```bash
 git clone --recursive https://github.com/juliangaal/pybind_demo
 cd pybind_demo && mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake ..
 make 
 ```
+Default `CMAKE_BUILD_TYPE=Release`
+
 *Custom Options*
 * `LIB_GEN_PATH`: Where generated library will be placed. **Default**: `scripts/`
 
 ***Note***
 You may need to manually set the python version to build against, e.g. when encountering a `PythonLibs` and `PythonInterpreter` mismatch, in `build` directory:
 ```bash
-cmake -DCMAKE_BUILD_TYPE=Release -DPYTHON_LIBRARY=$(python-config --prefix)/lib/libpython<version>.dylib -DPYTHON_INCLUDE_DIR=$(python-config --prefix)/include/python<version> ..
+cmake -DPYTHON_LIBRARY=$(python-config --prefix)/lib/libpython<version>.dylib -DPYTHON_INCLUDE_DIR=$(python-config --prefix)/include/python<version> ..
 make
 ```
 
