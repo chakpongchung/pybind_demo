@@ -10,8 +10,8 @@ endif()
 find_package(PythonLibs 3 REQUIRED)
 
 add_subdirectory(pybind11)
-pybind11_add_module(${PROJECT_NAME} src/${PROJECT_NAME}.cpp)
-target_include_directories(${PROJECT_NAME} PRIVATE ${PYTHON_INCLUDE_DIRS})
+pybind11_add_module(${PROJECT_NAME} src/${PROJECT_NAME}.cpp src/bindings.cpp)
+target_include_directories(${PROJECT_NAME} PRIVATE ${PYTHON_INCLUDE_DIRS} include)
 set_target_properties(${PROJECT_NAME}
     PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${LIB_GEN_PATH}
