@@ -8,6 +8,8 @@ using Data = std::vector<std::vector<int>>;
 
 unsigned int ackermann(unsigned int m, unsigned int n);
 
+std::vector<int> split(std::string& content, char delimiter);
+
 struct CSVReader {
     CSVReader() = delete;
     CSVReader(const std::string &filename, char delimiter);

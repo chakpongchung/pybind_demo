@@ -15,6 +15,21 @@ unsigned int ackermann(unsigned int m, unsigned int n) {
   return ackermann(m - 1, ackermann(m, n - 1));
 }
 
+std::vector<int> split(std::string& content, char delimiter) {
+    static size_t pos = 0;
+    static std::string chunk;
+    static std::vector<int> chunks(1'000);
+    chunks.clear();
+
+    while ((pos = content.find(delimiter)) != std::string::npos) {
+        chunk = content.substr(0, pos);
+        chunks.push_back(std::stoi(chunk));
+        content.erase(0, pos + 1);
+    }
+
+    chunks.shrink_to_fit();
+    return chunks;
+}
 
 CSVReader::CSVReader(const std::string &filename, char delimiter)
     : filename(filename), delimiter(delimiter) {

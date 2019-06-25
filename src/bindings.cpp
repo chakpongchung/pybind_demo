@@ -7,6 +7,7 @@ namespace py = pybind11;
 PYBIND11_MODULE(pybind_demo, m) {
     m.doc() = "pybind11 tutorial: ackermann";
     m.def("ackermann", &ackermann, "A function which calculates ackermann number");
+    m.def("split", &split, "Splits a string according to delimiter");
 
     py::class_<CSVReader>(m, "CSVReader")
             .def(py::init<const std::string &, char>())
