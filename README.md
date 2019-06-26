@@ -1,6 +1,10 @@
 # pybind11 demo
 
 ### results (release build, i5-4670 @ 3.4Ghz x 4)
+
+> Disclaimer: these benchmark were done for fun only. No serious optimization has been done.
+
+#### ackermann
 ```bash
 # pure python
 scripts/ackermann.py		~10 mins
@@ -10,6 +14,35 @@ scripts/ackermann_numba.py 	~30 secs
 
 # pybind calling c++ code
 scripts/ackermann_pybind.py 	~2.6 secs 
+```
+
+#### csvreader
+simplistic csv reader, reads ~4096000 lines of csv file
+```bash
+# pure python
+scripts/csvreader.py        ~4.3 secs
+
+# pybind calling c++ code
+scripts/csvreader_pybind.py ~1.5 secs
+```
+
+#### split
+splits string. Test with 1048576 chunks
+```
+# pure python, must be heavily optimized damn
+scripts/split.py               0.050 secs
+
+# pybind calling c++ code, c++ code not really optimized for speed
+# this copies the entire vector to a python object, possibly very costly?!
+scripts/split_pybind.py	       ~0.070 secs
+
+# pybing calling c++ code, c++ code not really optimized for speed
+# not copying should happen here, same performance strangely
+scripts/split_mut_pybind.py    ~0.065 secs  
+
+# using naive implementation. This is actually faster for strings with <= ~2000 chunks
+# e.g. in csv reader
+scripts/split_naive_pybind.py  ~38 secs
 ```
 
 ### install
