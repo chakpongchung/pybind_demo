@@ -92,3 +92,11 @@ void CSVReader::showData() {
 std::vector<int> CSVReader::dataAt(size_t index) {
     return data.at(index);
 }
+
+const std::string &CSVReader::getFilename() const {
+    return filename;
+}
+
+void CSVReader::setFilename(const std::string &name) {
+    filename = name;
+}

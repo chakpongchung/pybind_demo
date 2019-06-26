@@ -17,7 +17,7 @@ scripts/ackermann_pybind.py 	~2.6 secs
 ```
 
 #### csvreader
-simplistic csv reader, reads ~4096000 lines of csv file
+simplistic csv reader, reads ~4096000 lines of csv file, 10 ints each
 ```bash
 # pure python
 scripts/csvreader.py        ~4.3 secs

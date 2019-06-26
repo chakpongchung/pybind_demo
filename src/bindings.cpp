@@ -36,6 +36,7 @@ PYBIND11_MODULE(pybind_demo, m) {
 
     py::class_<CSVReader>(m, "CSVReader")
             .def(py::init<const std::string &, char>())
+            .def_property("filename", &CSVReader::getFilename, &CSVReader::setFilename) // directly exposes filename
             .def("processFile", &CSVReader::processFile)
             .def("dataAt", &CSVReader::dataAt)
             .def("showData", &CSVReader::showData);
