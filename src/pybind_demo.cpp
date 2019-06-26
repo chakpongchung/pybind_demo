@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <iterator>
+#include <sstream>
 
 unsigned int ackermann(unsigned int m, unsigned int n) {
   if (m == 0) {
@@ -15,11 +16,53 @@ unsigned int ackermann(unsigned int m, unsigned int n) {
   return ackermann(m - 1, ackermann(m, n - 1));
 }
 
+std::vector<int> split(const std::string &content, char delimiter) {
+    static std::vector<int> chunks(content.size()*2);
+    chunks.clear();
+    static std::string token;
+
+    std::istringstream stream(content);
+    while (std::getline(stream, token, delimiter))
+    {
+        chunks.push_back(std::stoi(token));
+    }
+
+    chunks.shrink_to_fit();
+    return chunks;
+}
+
+std::vector<int> split_naive(std::string &content, char delimiter) {
+    static std::vector<int> splits(content.size()*2);
+    splits.clear();
+    static std::string token;
+    size_t pos = 0;
+
+    while ((pos = content.find(delimiter)) != std::string::npos) {
+        token = content.substr(0, pos);
+        splits.push_back(std::stoi(token));
+        content.erase(0, pos + 1);
+    }
+
+    return splits;
+}
+
+void split_mut(const std::string &content, char delimiter, std::vector<int> &chunks) {
+    chunks.reserve(content.size()*2);
+    static std::string token;
+
+    std::istringstream stream(content);
+    while (std::getline(stream, token, delimiter))
+    {
+        chunks.push_back(std::stoi(token));
+    }
+
+    chunks.shrink_to_fit();
+}
 
 CSVReader::CSVReader(const std::string &filename, char delimiter)
     : filename(filename), delimiter(delimiter) {
 
-    data.reserve(1000);
+    data.reserve(2'000'000);
 }
 
 void CSVReader::processFile() {
@@ -27,21 +70,15 @@ void CSVReader::processFile() {
     if (!file)
 		return;
 
-    size_t pos = 0;
-	std::string line, token;
+	std::string line;
 
 	while (std::getline(file, line)) {
-        static std::vector<int> splits;
-        splits.reserve(10);
-
-	    while ((pos = line.find(delimiter)) != std::string::npos) {
-    		token = line.substr(0, pos);
-    		splits.push_back(std::stoi(token));
-    		line.erase(0, pos + 1);
-		}
-
-	    data.emplace_back(std::move(splits));
+	    // strangely/interestingly, naive implementation is the fastest here, wtf
+	    // naive implementation is blown out of the water for large strings by split and split_mut
+	    data.emplace_back(std::move(split_naive(line, delimiter)));
 	}
+
+	data.shrink_to_fit();
 }
 
 void CSVReader::showData() {

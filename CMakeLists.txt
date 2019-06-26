@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 project(pybind_demo)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(LIB_GEN_PATH ${PROJECT_SOURCE_DIR}/scripts CACHE STRING "Where generated library will be placed")
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
