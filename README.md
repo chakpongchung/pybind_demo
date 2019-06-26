@@ -5,6 +5,7 @@
 > Disclaimer: these benchmark were done for fun only. No serious optimization has been done.
 
 #### ackermann
+numbers m=4 n=1 -> 2862984010 calculations
 ```bash
 # pure python
 scripts/ackermann.py		~10 mins
