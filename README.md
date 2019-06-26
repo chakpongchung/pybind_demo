@@ -73,7 +73,7 @@ make
 ### use from python
 To run the compiled c++ lib from python code, in `scripts/`: run 
 ``` bash
-python-<version you compiled against> ackermann_pybind.py
+python-<version you compiled against> <file>.py
 ```
 
 The easiest way to use the generated library from *anywhere* is to add the output path (default `scripts`) to `PYTHONPATH`
